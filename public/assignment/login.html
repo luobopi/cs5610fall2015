@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Login</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="home.html">Project Name</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                    <li class="active"><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Username</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <input type="text" class="form-control" placeholder="Search...">
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="admin.html">Admin</a></li>
+                    <li><a href="forms.html">Forms</a></li>
+                </ul>
+
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="page-header">Login</h1>
+                <form class="form-horizontal">
+
+                    <div class="form-group">
+                        <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="inputUsername" placeholder="Username">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-6 col-sm-4">
+                            <a type="submit" class="btn btn-default" href="admin.html">Login</a>
+                        </div>
+                    </div>
+
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>
