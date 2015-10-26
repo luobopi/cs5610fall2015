@@ -15,7 +15,8 @@
         $scope.updateForm = updateForm;
 
         function loadAllFormsForUser() {
-            var userId = null
+            console.log("load all form user");
+            var userId = null;
             if ($rootScope.user) {
                 userId = $rootScope.user
             }
@@ -26,6 +27,7 @@
         loadAllFormsForUser();
 
         function addForm() {
+            console.log("success add form");
             var userId = null;
             if ($rootScope.user) {
                 userId = $rootScope.user

@@ -26,19 +26,19 @@
             for (var key in form) {
                 newForm[key] = form[key]
             }
-            newForm.userId = userId
-            forms.push(newForm)
-            callback(newForm)
+            newForm.userId = userId;
+            forms.push(newForm);
+            return callback(newForm);
         }
 
         function findAllFormsForUser(userId, callback) {
-            var formsForUser = []
+            var formsForUser = [];
             forms.forEach(function (form, index, array) {
                 if (form.userId === userId) {
                     formsForUser.push(form)
                 }
             });
-            callback(formsForUser)
+            return callback(formsForUser)
         }
 
         function deleteFormById(formId, callback) {
