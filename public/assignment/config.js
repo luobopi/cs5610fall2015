@@ -25,12 +25,12 @@
                 .when('/profile',
                     {
                         templateUrl: './profile/profile.view.html',
-                        controller: 'profileController'
+                        controller: 'ProfileController'
                     })
                 .when('/form',
                     {
                         templateUrl: './form/form.view.html',
-                        controller: 'formController'
+                        controller: 'FormController'
                     })
                 .otherwise({
                     redirectTo: '/home'

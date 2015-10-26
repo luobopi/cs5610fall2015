@@ -14,14 +14,17 @@
         $scope.register = register;
 
         function register() {
+            console.log("register");
             var user = {
                 username: $scope.username,
                 password: $scope.password,
                 email: $scope.email
             };
             UserService.createUser(user, function(user) {
-                $rootScope.user = user;
-                $location.path('/profile')
+                if (user) {
+                    $rootScope.user = user;
+                    $location.url('/profile');
+                }
             })
         }
 

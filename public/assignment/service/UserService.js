@@ -14,11 +14,11 @@
         var currentUsers = [];
 
         var service = {
-            findUserByUsernameAndPassword: findUserByUsernameAndPassword(),
-            findAllUsers: findAllUsers(),
-            createUser: createUser(),
-            deleteUserById: deleteUserById(),
-            updateUser: updateUser()
+            findUserByUsernameAndPassword: findUserByUsernameAndPassword,
+            findAllUsers: findAllUsers,
+            createUser: createUser,
+            deleteUserById: deleteUserById,
+            updateUser: updateUser
 
         };
 
@@ -26,7 +26,7 @@
 
 
         function findUserByUsernameAndPassword(username, password, callback) {
-            currentUser.forEach(function (item, index, array) {
+            currentUsers.forEach(function (item, index, array) {
                 if (item.username === username && item.password === password) {
                     callback(item);
                 }

@@ -5,59 +5,65 @@
 
 (function() {
     angular
-        .module("FormBuilderApp")
-        .factory("FormService", FormService);
+        .module('FormBuilderApp')
+        .factory('FormService', FormService);
 
     function FormService() {
         var forms = [];
 
         var service = {
             createFormForUser: createFormForUser,
-            findAllFormForUser: findAllFormForUser,
             deleteFormById: deleteFormById,
-            updateFormById: updateFormById
+            updateFormById: updateFormById,
+            findAllFormsForUser: findAllFormsForUser
         };
 
         return service;
 
         function createFormForUser(userId, form, callback) {
-            form.id = guid();
-            form.userid = userId;
-            forms.push(form);
-            callback(form);
+            var newForm = {};
+            form.formId = guid();
+            for (var key in form) {
+                newForm[key] = form[key]
+            }
+            newForm.userId = userId
+            forms.push(newForm)
+            callback(newForm)
         }
 
-        function findAllFormForUser(userId, callback) {
-            var existForm = [];
-            forms.forEach(function (item, index, array) {
-                if (item.userid === userId) {
-                    existForm.push(item);
+        function findAllFormsForUser(userId, callback) {
+            var formsForUser = []
+            forms.forEach(function (form, index, array) {
+                if (form.userId === userId) {
+                    formsForUser.push(form)
                 }
             });
-            callback(existForm);
+            callback(formsForUser)
         }
 
         function deleteFormById(formId, callback) {
-            forms.forEach(function (item, index, array) {
-                if(item.id === formId) {
-                    forms.splice(index, 1);
+            var index = -1
+            forms.forEach(function (form, i, arr) {
+                if (form.formId === formId) {
+                    index = i
                 }
             });
-            callback(forms);
+            forms.splice(index, 1);
+            callback(forms)
         }
 
         function updateFormById(formId, newForm, callback) {
-            forms.forEach(function (item, index, array) {
-                if(item.id === formId) {
+            var updatedForm = null;
+            forms.forEach(function (form, i, arr) {
+                if (form.formId === formId) {
                     for (var key in newForm) {
-                        item[key] = newForm[key];
+                        form[key] = newForm[key];
                     }
-                    callback(item);
+                    updatedForm = form;
                 }
             });
-            callback(null);
+            callback(updatedForm)
         }
-
 
         function guid() {
             function s4() {
@@ -68,6 +74,5 @@
             return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
                 s4() + '-' + s4() + s4() + s4();
         }
-
     }
 })();

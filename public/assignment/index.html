@@ -11,6 +11,19 @@
     <!--Bootstrap-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
+
+
+</head>
+<body>
+
+    <div ng-include="'header/header.view.html'"></div>
+    <div class = "container-fluid">
+        <div class="row">
+            <div ng-include="'sidebar/sidebar.view.html'"></div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view></div>
+        </div>
+    </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <!--JQuery-->
@@ -30,17 +43,5 @@
     <script src="register/register.controller.js"></script>
     <script src="profile/profile.controller.js"></script>
     <script src="form/form.controller.js"></script>
-
-
-</head>
-<body>
-
-    <div ng-include="'header/header.view.html'"></div>
-    <div class = "container-fluid">
-        <div class="row">
-            <div ng-include="'sidebar/sidebar.view.html'"></div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view></div>
-        </div>
-    </div>
 </body>
 </html>

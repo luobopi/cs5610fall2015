@@ -14,12 +14,16 @@
         $scope.login = login;
 
         function login() {
+
             UserService.findUserByUsernameAndPassword(
                 $scope.username,
                 $scope.password,
                 function(user) {
-                    $rootScope.currentUser = user;
-                    $location.path('/profile');
+                    if (user!=null) {
+                        console.log("login");
+                        $rootScope.user = user;
+                        $location.url('/profile');
+                    }
                 }
             );
             //$location.url('/profile');
