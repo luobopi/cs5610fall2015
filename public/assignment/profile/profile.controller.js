@@ -5,7 +5,7 @@
 
 (function() {
     angular
-        .module("BuilderFormApp")
+        .module("FormBuilderApp")
         .controller("ProfileController", ProfileController)
 
     function ProfileController($rootScope, $scope, $location, UserService) {
