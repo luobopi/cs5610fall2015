@@ -22,18 +22,18 @@
                         templateUrl: './register/register.view.html',
                         controller: 'RegisterController'
                     })
-                .when('profile',
+                .when('/profile',
                     {
                         templateUrl: './profile/profile.view.html',
                         controller: 'profileController'
                     })
-                .when('form',
+                .when('/form',
                     {
                         templateUrl: './form/form.view.html',
                         controller: 'formController'
                     })
                 .otherwise({
-                    redirectTo: 'home'
+                    redirectTo: '/home'
                 })
         })
 })();
