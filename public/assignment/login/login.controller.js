@@ -19,9 +19,10 @@
                 $scope.password,
                 function(user) {
                     $rootScope.currentUser = user;
-                    $location.url('/profile');
+                    $location.path('/profile');
                 }
             );
+            //$location.url('/profile');
         }
     }
 })();
