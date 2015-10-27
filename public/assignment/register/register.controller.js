@@ -12,6 +12,7 @@
     function RegisterController($rootScope, $scope, $location, UserService) {
         $scope.$location = $location;
         $scope.register = register;
+        $scope.login = register;
 
         function register() {
             console.log("register");

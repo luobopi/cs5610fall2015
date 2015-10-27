@@ -42,7 +42,7 @@
         }
 
         function deleteFormById(formId, callback) {
-            var index = -1
+            var index = -1;
             forms.forEach(function (form, i, arr) {
                 if (form.formId === formId) {
                     index = i

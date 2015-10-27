@@ -41,7 +41,7 @@
         function createUser(newUser, callback) {
             newUser.id = guid();
             currentUsers.push(newUser);
-            callback(currentUsers);
+            callback(newUser);
         }
 
         function deleteUserById(userId, callback) {
@@ -54,20 +54,23 @@
         }
 
         function updateUser(userId, user, callback) {
+            var updatedUser = null;
             currentUsers.forEach(function (item, index, array) {
                 if(item.id === userId) {
-                    for (var key in user) {
-                        item[key] = user[key]
-                    }
-                    //item.username = user.username;
-                    //item.password = user.password;
-                    //item.firstname = user.firstname;
-                    //item.lastname = user.lastname;
-                    //item.email = user.email;
-                    callback(item);
+                    //for (var key in user) {
+                    //    item[key] = user[key]
+                    //}
+                    item.username = user.username;
+                    item.password = user.password;
+                    item.firstname = user.firstname;
+                    item.lastname = user.lastname;
+                    item.email = user.email;
+                    updatedUser = item;
+                    return callback(item);
                 }
             });
-            callback(null);
+            //callback(null);
+            //callback(updatedUser);
         }
 
 
