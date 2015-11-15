@@ -17,15 +17,11 @@
 
             UserService.findUserByUsernameAndPassword(
                 $scope.username,
-                $scope.password,
-                function(user) {
-                    if (user!=null) {
-                        console.log("login");
-                        $rootScope.user = user;
-                        $location.url('/profile');
-                    }
-                }
-            );
+                $scope.password
+            ).then(function(user) {
+                $rootScope.currentUser = user;
+                $location.url('/profile');
+                });
             //$location.url('/profile');
         }
     }

@@ -20,7 +20,7 @@
             if ($rootScope.user) {
                 userId = $rootScope.user
             }
-            FormService.findAllFormsForUser(userId, function(forms) {
+            FormService.findAllFormsForUser(userId).then(function(forms) {
                 $scope.forms = forms
             })
         }
@@ -33,7 +33,7 @@
                 userId = $rootScope.user
             }
             var newForm = $scope.form;
-            FormService.createFormForUser(userId, newForm, function(form) {
+            FormService.createFormForUser(userId, newForm).then(function(){
                 loadAllFormsForUser()
             })
         }
@@ -44,7 +44,7 @@
             for (var key in $scope.form) {
                 newForm[key] = $scope.form[key]
             }
-            FormService.updateFormById($scope.form.formId, newForm, function(form) {
+            FormService.updateFormById($scope.form.formId, newForm).then(function(form) {
                 $scope.form = form;
                 loadAllFormsForUser()
             })
@@ -52,7 +52,7 @@
 
 
         function deleteForm(formIndex) {
-            FormService.deleteFormById($scope.forms[formIndex].formId, function (forms) {
+            FormService.deleteFormById($scope.forms[formIndex].formId).then(function() {
                 loadAllFormsForUser()
             })
         }
