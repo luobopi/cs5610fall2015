@@ -17,8 +17,8 @@ module.exports = function(app) {
         FindFormByUserId: FindFormByUserId,
         AddField: AddField,
         DeleteField: DeleteField,
-        FindField: FindField,
-        UpdataField: UpdateField
+        FindFieldById: FindFieldById,
+        UpdateField: UpdateField
 
     };
     return api;
@@ -60,7 +60,18 @@ module.exports = function(app) {
         return forms;
     }
 
-    function FindField() {}
+    function FindFieldById(formId, fieldId) {
+        var form = findByFormId(formId);
+        var fields = form.fields;
+        if (!fields)
+            return null;
+        for (var i = 0; i < fields.length; ++i) {
+            var field = fields[i];
+            if (field.id == fieldId)
+                return field;
+        }
+        return null;
+    }
 
     function FindFormByTitle(title) {
         for (var i = 0; i < forms.length; ++i) {
@@ -74,10 +85,28 @@ module.exports = function(app) {
 
     function FindFormByUserId(userid) {}
 
-    function AddField() {}
+    function AddField(formId, newField) {
+        var form = FindById(formId);
+        newField.id = uuid.v1();
+        form.fields.push(newField);
+        return form.fields;
+    }
 
-    function DeleteField() {}
+    function DeleteField(formId, fieldId) {
+        var form = FindById(formId);
+        var fieldIndex = form.fields.findIndex(function(item, index, array) {
+            return item.id === fieldId;
+        });
 
-    function UpdateField() {}
+        form.fields.splice(fieldIndex, 1);
+        return form.fields;
+    }
+
+    function UpdateField(formId, fieldId, newField) {
+        var field = FindFieldById(formId, fieldId);
+        for(var k in newField) {
+            field[k] = newField[k];
+        }
+    }
 
 }
