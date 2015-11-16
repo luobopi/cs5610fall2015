@@ -8,13 +8,13 @@ var uuid = require('node-uuid');
 module.exports = function(app, model) {
 
     app.get('/api/assignment/user/:userId/form', function(req, res) {
-        var userId = req.params.userId
+        var userId = req.params.userId;
         res.json(model.FindFormByUserId(userId));
     });
 
 
     app.get('/api/assignment/form/:formId', function(req, res) {
-        var formId = req.params.formId
+        var formId = req.params.formId;
         res.json(model.FindById(formId));
     });
 

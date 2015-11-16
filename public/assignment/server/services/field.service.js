@@ -6,7 +6,7 @@
 module.exports = function(app, model) {
     app.get('/api/assignment/form/:formId/field', function(req, res) {
         var formId = req.params.formId;
-        res.json(formModel.FindById(formId).fields);
+        res.json(model.FindById(formId).fields);
     });
 
     app.get('/api/assignment/form/:formId/field/:fieldId',

@@ -1,20 +1,22 @@
 <h1 class="page-header">Forms</h1>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#/form">Forms</a></li>
-    <li><a>Fields</a></li>
+    <li class="active"><a href="#/forms">Forms</a></li>
+    <!--li><a href="form-fields.html">Fields</a></li-->
+    <li><a href="#/user/{{user.id || 0}}/form/{{form.id || 0}}/fields" ng-class="{disabled: !form.id}">Fields</a></li>
+    <!--li><a>Fields</a></li-->
 </ul>
 
 
 <table class="table table-striped" ng-controller="FormController">
     <thead>
     <tr>
-        <th><span class="glyphicon glyphicon-sort" /> Form title</th>
-        <th><span class="glyphicon glyphicon-sort" /> Action</th>
+        <th><span class="glyphicon glyphicon-triangle-bottom" /> Form name</th>
+        <th><span class="glyphicon glyphicon-triangle-bottom" /> Action</th>
 
     </tr>
     <tr>
-        <td><input class="form-control" type="text" name="formtitle" placeholder="title" ng-model="newForm.title"/></td>
+        <td><input class="form-control" type="text" name="formname" placeholder="name" ng-model="form.title"/></td>
 
         <td>
             <a ng-click="addForm()" class="glyphicon glyphicon-plus"/>
@@ -25,7 +27,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="form in forms">
-        <td> <a href="#/user/{{form.userId}}/form/{{form.id}}/fields"> {{form.title}} </td>
+        <td> {{form.title}} </td>
         <td>
             <a ng-click="deleteForm($index)" class="glyphicon glyphicon-remove"/>
             <a ng-click="selectForm($index)" class="glyphicon glyphicon-ok"/>
