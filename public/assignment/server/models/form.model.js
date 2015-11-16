@@ -38,7 +38,7 @@ module.exports = function(app) {
             if (form.id == id)
                 return form;
         }
-        //return null;
+        return null;
     }
 
     function Update(id, newForm) {
@@ -61,7 +61,7 @@ module.exports = function(app) {
     }
 
     function FindFieldById(formId, fieldId) {
-        var form = findByFormId(formId);
+        var form = FindById(formId);
         var fields = form.fields;
         if (!fields)
             return null;
@@ -83,7 +83,11 @@ module.exports = function(app) {
         return null;
     }
 
-    function FindFormByUserId(userid) {}
+    function FindFormByUserId(userId) {
+        return forms.filter(function(item, index, array) {
+            return item.userId.toString() === userId;
+        });
+    }
 
     function AddField(formId, newField) {
         var form = FindById(formId);

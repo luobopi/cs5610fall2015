@@ -33,7 +33,7 @@
                 userId = $rootScope.user
             }
             var newForm = $scope.form;
-            FormService.createFormForUser(userId, newForm).then(function(){
+            FormService.createFormForUser(userId, newForm).then(function(form){
                 loadAllFormsForUser()
             })
         }
