@@ -5,13 +5,15 @@
         .module("FormBuilderApp")
         .controller("FieldController", FieldController);
 
-    function FieldController($routeParams, FieldService) {
+    function FieldController($scope, $rootScope, $routeParams, FieldService) {
         var model = this;
-        var userId = $routeParams['userId'];
-        var formId = $routeParams['formId'];
+        var userId = $routeParams.userId;
+        var formId = $routeParams.formId;
 
         FieldService.getFieldsForForm(formId).then(function(fields) {
+            console.log("The field controller said the form id is:", formId);
             model.fields = fields;
+            console.log(model.fields);
         });
 
         model.addField = function(fieldType) {
@@ -87,8 +89,10 @@
         };
 
         model.removeField = function(field) {
-            FieldService.deleteFieldFromForm(formId, field.id).
+            console.log(field);
+            FieldService.deleteFieldFromForm(formId, field).
                 then(function(fields) {
+                    console.log("The delete field id is:", field);
                     model.fields = fields;
                 });
         };

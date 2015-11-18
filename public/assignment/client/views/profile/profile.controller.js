@@ -19,11 +19,11 @@
             if (user.password) {
                 $scope.password = user.password
             }
-            if (user.firstname) {
-                $scope.firstname = user.firstname
+            if (user.firstName) {
+                $scope.firstName = user.firstName
             }
-            if (user.lastname) {
-                $scope.lastname = user.lastname
+            if (user.lastName) {
+                $scope.lastName = user.lastName
             }
             if (user.email) {
                 $scope.email = user.email
@@ -35,8 +35,8 @@
             var newUser = {
                 username: $scope.username,
                 password: $scope.password,
-                firstname: $scope.fisrtname,
-                lastname: $scope.lastname,
+                firstName: $scope.fisrtName,
+                lastName: $scope.lastName,
                 email: $scope.email
             };
             UserService.updateUser(user.id, newUser, function(user) {

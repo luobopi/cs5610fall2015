@@ -21,6 +21,8 @@
             var deferred = $q.defer();
             $http.post('/api/assignment/form/' + formId + '/field', field)
                 .success(function(response) {
+                    console.log("The current form id is:", formId);
+                    console.log("The current field id is:", field.id);
                     deferred.resolve(response);
                 });
             return deferred.promise;

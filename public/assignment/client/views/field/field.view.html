@@ -1,8 +1,8 @@
 
 <h1 class="page-header">Form  Fields</h1>
 <ul class="nav nav-tabs">
-    <li ng-class="{'active': $location.url().indexOf('form') == -1 }" role="presentation"><a href="#/form">Forms</a></li>
-    <li ng-class="{'active': $location.url().indexOf('form-field') != -1 }" role="presentation"><a href="#/form-field">Form-Fields</a></li>
+    <li><a href="#/form">Forms</a></li>
+    <li class="active"><a href="#">Fields</a></li>
 </ul>
 <br>
 <div class="form-horizontal">
@@ -10,9 +10,9 @@
         <div ng-switch on="field.type">
             <div ng-switch-when="TEXTAREA">
                 <div class="form-group col-lg-10">
-                    <label for="txtarea">{{field.label}}</label>
+                    <label for="slt">{{field.label}}</label>
                     <br>
-                    <textarea id="txtarea" ng-model ="field.placeholder" class="form-control" rows="5"/>
+                    <textarea id="slt" ng-model ="field.placeholder" class="form-control" rows="5"/>
                     <div class="allicons">
                         <span class="btn btn-warning glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         <span class="btn btn-primary glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -23,9 +23,9 @@
             </div>
             <div ng-switch-default>
                 <div class="form-group col-lg-10">
-                    <label for="txt">{{field.label}}</label>
+                    <label for="mlt">{{field.label}}</label>
                     <br>
-                    <input id = "txt" ng-model ="field.placeholder" class="form-control" type="text" placeholder="{{field.placeholder}}">
+                    <input id = "mlt" ng-model ="field.placeholder" class="form-control" type="text" placeholder="{{field.placeholder}}">
                     <div class="allicons">
                         <span class="btn btn-warning glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         <span class="btn btn-primary glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -35,12 +35,12 @@
                 </div>
             </div>
             <div ng-switch-when="DATE">
-                <div class="form-group col-lg-4">
-                    <label for="dob">{{field.label}}</label>
+                <div class="form-group col-lg-7">
+                    <label for="date">{{field.label}}</label>
                     <br>
-                    <input id="dob" type="date" class="form-control" name="date">
+                    <input id="date" type="date" class="form-control" name="date">
                     <div class="allicons">
-                        <span class="btn btn-warning glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <span class="btn btn-waning glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         <span class="btn btn-primary glyphicon glyphicon-plus" aria-hidden="true"></span>
                         <span class="btn btn-danger glyphicon glyphicon-remove" ng-click="model.removeField(field.id)" aria-hidden="true"></span>
                         <span class="btn btn-success glyphicon glyphicon-align-justify" aria-hidden="true"></span>
@@ -48,10 +48,10 @@
                 </div>
             </div>
             <div ng-switch-when="OPTIONS">
-                <div class="form-group col-lg-4">
-                    <label for="dropd">{{field.label}}</label>
+                <div class="form-group col-lg-7">
+                    <label for="dropdown">{{field.label}}</label>
                     <br>
-                    <select id="dropd" class="form-control">
+                    <select id="dropdown" class="form-control">
                         <option ng-repeat="option in field.options">
                             {{option.value}}
                         </option>
@@ -65,10 +65,10 @@
                 </div>
             </div>
             <div ng-switch-when="CHECKBOXES">
-                <div class="form-group">
-                    <label for="rolesbox">{{field.label}}</label>
+                <div class="form-group col-lg-7">
+                    <label for="checkbox">{{field.label}}</label>
                     <br>
-                    <div class="checkbox form-control" id="rolesbox" ng-repeat="option in field.options">
+                    <div class="checkbox form-control" id="checkbox" ng-repeat="option in field.options">
                         <label><input type="checkbox" value="{{option.value}}">{{option.label}}</label>
                     </div>
                     <div class="allicons">
@@ -80,9 +80,9 @@
                 </div>
             </div>
             <div ng-switch-when="RADIOS">
-                <div class="form-group">
-                    <label for="radiobtn">{{field.label}}</label>
-                    <div class="radio" id="radiobtn" ng-repeat="option in field.options">
+                <div class="form-group col-lg-7">
+                    <label for="radiobutton">{{field.label}}</label>
+                    <div class="radio" id="radiobutton" ng-repeat="option in field.options">
                         <label>
                             <input type="radio" name="{{option.value}}">{{option.label}}
                         </label>

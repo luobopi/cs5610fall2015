@@ -1,6 +1,6 @@
 <h1 class="page-header">Forms</h1>
-
-<ul class="nav nav-tabs">
+<div ng-controller="FormController">
+    <ul class="nav nav-tabs">
     <li class="active"><a href="#/forms">Forms</a></li>
     <!--li><a href="form-fields.html">Fields</a></li-->
     <li><a href="#/user/{{user.id || 0}}/form/{{form.id || 0}}/fields" ng-class="{disabled: !form.id}">Fields</a></li>
@@ -8,32 +8,33 @@
 </ul>
 
 
-<table class="table table-striped" ng-controller="FormController">
-    <thead>
-    <tr>
-        <th><span class="glyphicon glyphicon-triangle-bottom" /> Form name</th>
-        <th><span class="glyphicon glyphicon-triangle-bottom" /> Action</th>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th><span class="glyphicon glyphicon-triangle-bottom" /> Form name</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom" /> Action</th>
 
-    </tr>
-    <tr>
-        <td><input class="form-control" type="text" name="formname" placeholder="name" ng-model="form.title"/></td>
+        </tr>
+        <tr>
+            <td><input class="form-control" type="text" name="formname" placeholder="name" ng-model="form.title"/></td>
 
-        <td>
-            <a ng-click="addForm()" class="glyphicon glyphicon-plus"/>
-            <a ng-click="updateForm()" class="glyphicon glyphicon-ok"/>
-        </td>
-    </tr>
+            <td>
+                <a ng-click="addForm()" class="glyphicon glyphicon-plus"/>
+                <a ng-click="updateForm()" class="glyphicon glyphicon-ok"/>
+            </td>
+        </tr>
 
-    </thead>
-    <tbody>
-    <tr ng-repeat="form in forms">
-        <td> {{form.title}} </td>
-        <td>
-            <a ng-click="deleteForm($index)" class="glyphicon glyphicon-remove"/>
-            <a ng-click="selectForm($index)" class="glyphicon glyphicon-ok"/>
-        </td>
-    </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="form in forms">
+            <td> {{form.title}} </td>
+            <td>
+                <a ng-click="deleteForm($index)" class="glyphicon glyphicon-remove"/>
+                <a ng-click="selectForm($index)" class="glyphicon glyphicon-ok"/>
+            </td>
+        </tr>
 
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>

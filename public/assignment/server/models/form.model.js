@@ -95,13 +95,17 @@ module.exports = function(app) {
     function AddField(formId, newField) {
         var form = FindById(formId);
         newField.id = uuid.v1();
+        console.log("New field id is", newField.id);
         form.fields.push(newField);
+        console.log(form);
         return form.fields;
     }
 
     function DeleteField(formId, fieldId) {
         var form = FindById(formId);
         var fieldIndex = form.fields.findIndex(function(item, index, array) {
+            console.log("The server delete field id is:", fieldId);
+            console.log("The server delete field index is:", fieldIndex);
             return item.id === fieldId;
         });
 

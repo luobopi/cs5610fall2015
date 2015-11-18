@@ -8,9 +8,9 @@ module.exports = function(app, model) {
         var formId = req.params.formId;
         var form = model.FindById(formId);
         if (form != null) {
-            res.jsonp(form.fields)
+            res.json(form.fields)
         } else {
-            res.jsonp(null);
+            res.json(null);
         }
         //res.json(model.FindById(formId).fields);
     });
