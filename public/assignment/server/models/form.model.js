@@ -6,6 +6,7 @@
 module.exports = function(app) {
     var forms = require('./form.mock.json');
     var uuid = require("node-uuid");
+    //var q = require("q");
 
     var api = {
         Create: Create,
@@ -29,6 +30,8 @@ module.exports = function(app) {
     }
 
     function FindAll() {
+        console.log(forms);
+        console.log("The server find all forms");
         return forms;
     }
 

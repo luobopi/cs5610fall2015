@@ -19,8 +19,14 @@
                 $scope.username,
                 $scope.password
             ).then(function(user) {
-                $rootScope.currentUser = user;
-                $location.url('/profile');
+                    if (user){
+                        console.log("The username and password are correct!");
+                        $rootScope.user = user;
+                        $location.url('/profile');
+                    } else {
+                        console.log("The username or password dose not exist");
+                        $location.url('/login');
+                    }
                 });
             //$location.url('/profile');
         }

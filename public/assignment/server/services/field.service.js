@@ -6,7 +6,13 @@
 module.exports = function(app, model) {
     app.get('/api/assignment/form/:formId/field', function(req, res) {
         var formId = req.params.formId;
-        res.json(model.FindById(formId).fields);
+        var form = model.FindById(formId);
+        if (form != null) {
+            res.jsonp(form.fields)
+        } else {
+            res.jsonp(null);
+        }
+        //res.json(model.FindById(formId).fields);
     });
 
     app.get('/api/assignment/form/:formId/field/:fieldId',

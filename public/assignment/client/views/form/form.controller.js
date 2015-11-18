@@ -18,9 +18,12 @@
             console.log("load all form user");
             var userId = null;
             if ($rootScope.user) {
-                userId = $rootScope.user
+                userId = $rootScope.user.id;
             }
+            console.log(userId);
             FormService.findAllFormsForUser(userId).then(function(forms) {
+                //console.log("There is no forms");
+                console.log(forms);
                 $scope.forms = forms
             })
         }

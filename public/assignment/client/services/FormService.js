@@ -31,6 +31,7 @@
             var deferred = $q.defer();
             $http.get('/api/assignment/user/' + userId + '/form')
                 .success(function(response) {
+                    console.log("find all forms");
                     deferred.resolve(response);
                 });
             return deferred.promise;

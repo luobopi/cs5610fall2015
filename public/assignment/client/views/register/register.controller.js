@@ -23,6 +23,7 @@
             };
             UserService.createUser(user).then(function(user) {
                 if (user) {
+                    console.log("register");
                     $rootScope.user = user;
                     $location.url('/profile');
                 }
