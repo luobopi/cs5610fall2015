@@ -35,11 +35,11 @@
             var newUser = {
                 username: $scope.username,
                 password: $scope.password,
-                firstName: $scope.fisrtName,
+                firstName: $scope.firstName,
                 lastName: $scope.lastName,
                 email: $scope.email
             };
-            UserService.updateUser(user.id, newUser, function(user) {
+            UserService.updateUser(user._id, newUser, function(user) {
                 if (user!=null) {
                     console.log("update");
                     $rootScope.user = user;

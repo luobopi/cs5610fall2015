@@ -25,7 +25,7 @@
       {
         "id": "444",
         "label": "State",
-        "type": "OPTIONS",
+        "type": "SELECT",
         "options": [
           {
             "label": "Massachussets",

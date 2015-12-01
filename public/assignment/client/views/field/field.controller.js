@@ -38,7 +38,7 @@
                 "dropdown": {
                     "id": null,
                     "label": "New Dropdown",
-                    "type": "OPTIONS",
+                    "type": "SELECT",
                     "options": [{
                         "label": "Option 1",
                         "value": "OPTION_1"
