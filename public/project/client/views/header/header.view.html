@@ -1,0 +1,50 @@
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top" ng-controller="HeaderController">
+        <div class="container-fluid">
+            
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#/home">Make Up Up</a>
+            </div>
+
+            
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="#search">Search</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#/register"  ng-class="{'active' : $location.url() == '/register'}">Register</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#/login"  ng-class="{'active': $location.url() == '/login'}">Login</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#">Logout</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        
+</nav>
+
+<header>
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1>Welcome to Make Up Up Website!</h1>
+            <hr>
+            <p>Hi, My name is Yi Xing. This is my first website about make up. This website product information about make up for women and men.
+                It also provide users' reviews on the product. People also could build their make up social network to make friend with others</p>
+            <a href="#search" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+        </div>
+    </div>
+</header>
