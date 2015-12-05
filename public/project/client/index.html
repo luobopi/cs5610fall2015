@@ -6,6 +6,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.min.js"></script>
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="views/header/header.controller.js"></script>
+    <script src="views/main/main.controller.js"></script>
+    <script src="views/home/home.controller.js"></script>
+    <script src="views/profile/profile.controller.js"></script>
 
 
     <title>Make Up Up</title>
@@ -33,7 +43,7 @@
 
 </head>
 
-<body>
+<body ng-controller="MainController">
 
     <div ng-include="'views/header/header.view.html'"></div>
     <!--nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
@@ -76,18 +86,32 @@
     </nav-->
 
 
-    <header>
+    <!--<header ng-class="{'header-image' : model.$location.url().indexOf('/home') > -1}">-->
+        <!--<div class="header-content">-->
+            <!--<div class="header-content-inner">-->
+                <!--<h1>Welcome to Make Up Up Website!</h1>-->
+                <!--<hr>-->
+                <!--<p>Hi, My name is Yi Xing. This is my first website about make up. This website product information about make up for women and men.-->
+                    <!--It also provide users' reviews on the product. People also could build their make up social network to make friend with others</p>-->
+                <!--<a href="#search" class="btn btn-primary btn-xl page-scroll">Find Out More</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</header>-->
+
+    <header ng-show="{$location.url() == '/home'}" class="ng-show">
+    <!--<header>-->
         <div class="header-content">
             <div class="header-content-inner">
                 <h1>Welcome to Make Up Up Website!</h1>
                 <hr>
                 <p>Hi, My name is Yi Xing. This is my first website about make up. This website product information about make up for women and men.
-                    It also provide users' reviews on the product. People also could build their make up social network to make friend with others</p>
+                It also provide users' reviews on the product. People also could build their make up social network to make friend with others</p>
                 <a href="#search" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
             </div>
         </div>
     </header>
     <div ng-view></div>
+
 
 
     <!--section class="bg-primary" id="search">
@@ -239,14 +263,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/creative.js"></script>
-
-    <!-- Angular Js -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.min.js"></script>
-
-    <script src="app.js"></script>
-    <script src="config.js"></script>
-    <script src="views/header/header.controller.js"></script>
 
 
 </body>

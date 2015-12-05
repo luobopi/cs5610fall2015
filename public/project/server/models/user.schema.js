@@ -4,15 +4,17 @@
 "use strict";
 
 module.exports = function(mongoose) {
-    var ProductSchema = require("./product.schema.js");
+    var ReviewSchema = require("./review.schema.js");
+    var UserSchema = require("./user.schema.js");
     return mongoose.Schema({
         username: String,
         password: String,
         firstName: String,
         lastName: String,
         email: String,
-        reviews: [ProductSchema],
-        loves: [String]
+        birthday: Data,
+        reviews: [ReviewSchema._id],
+        friends: [UserSchema._id]
     }, {
         collection: "cs5610.project.user"
     });
