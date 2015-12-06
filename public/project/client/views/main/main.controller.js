@@ -6,8 +6,11 @@
         .module("MakeupApp")
         .controller("MainController", MainController);
 
-    function MainController($location) {
+    function MainController($scope, $location) {
         var model = this;
         model.$location = $location;
+        $scope.$location = $location;
+        console.log($scope.$location.url())
+        console.log($scope.$location.url() != '/home')
     }
 })();

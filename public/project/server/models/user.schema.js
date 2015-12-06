@@ -4,17 +4,18 @@
 "use strict";
 
 module.exports = function(mongoose) {
-    var ReviewSchema = require("./review.schema.js");
-    var UserSchema = require("./user.schema.js");
+    //var ReviewSchema = require("./review.schema.js");
+    //mongoose.model('Review', ReviewSchema);
+    //var UserSchema = require("./user.schema.js");
     return mongoose.Schema({
         username: String,
         password: String,
         firstName: String,
         lastName: String,
         email: String,
-        birthday: Data,
-        reviews: [ReviewSchema._id],
-        friends: [UserSchema._id]
+        birthday: Date,
+        photo: String,
+        reviews: [{type: mongoose.Schema.ObjectId, ref: "Review"}]
     }, {
         collection: "cs5610.project.user"
     });

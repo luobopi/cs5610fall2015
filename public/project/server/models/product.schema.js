@@ -4,11 +4,14 @@
 "use strict";
 
 module.exports = function(mongoose) {
-    var ReviewSchema = require("./review.schema.js");
+    //var ReviewSchema = require("./review.schema.js");
+    //mongoose.model("Review", )
     return mongoose.Schema({
         brand: String,
         name: String,
         price: Number,
-        reviews: [ReviewSchema]
+        reviews: [{type: mongoose.Schema.ObjectId, ref:"Review"}]
+    },{
+        collection: "cs5610.project.product"
     })
-}
+};

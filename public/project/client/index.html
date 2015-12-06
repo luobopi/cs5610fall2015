@@ -12,10 +12,15 @@
 
     <script src="app.js"></script>
     <script src="config.js"></script>
+    <script src="services/UserService.js"></script>
+    <script src="services/ProductService.js"></script>
     <script src="views/header/header.controller.js"></script>
     <script src="views/main/main.controller.js"></script>
     <script src="views/home/home.controller.js"></script>
     <script src="views/profile/profile.controller.js"></script>
+    <script src="views/search/search.controller.js"></script>
+    <script src="views/login/login.controller.js"></script>
+    <script src="views/register/register.controller.js"></script>
 
 
     <title>Make Up Up</title>
@@ -98,7 +103,7 @@
         <!--</div>-->
     <!--</header>-->
 
-    <header ng-show="{$location.url() == '/home'}" class="ng-show">
+    <header ng-show="$location.url() == '/home'" class="ng-show">
     <!--<header>-->
         <div class="header-content">
             <div class="header-content-inner">

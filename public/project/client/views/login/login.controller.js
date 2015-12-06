@@ -9,6 +9,7 @@
         .module("MakeupApp")
         .controller("LoginController", LoginController);
 
+    //function LoginController($rootScope, $scope, $location, UserService) {
     function LoginController($rootScope, $scope, $location, UserService) {
         $scope.location = $location;
         $scope.login = login;

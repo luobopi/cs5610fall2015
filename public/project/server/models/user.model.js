@@ -6,11 +6,11 @@
 var q = require("q");
 
 module.exports = function(app, mongoose, db) {
-    var uuid = require("node-uuid");
+    //var uuid = require("node-uuid");
     var UserSchema = require("./user.schema.js")(mongoose);
-    //var ReviewSchema = require("./review.schema.js")(mongoose);
-    var UserModel = mongoose.model('UserModel', UserSchema);
-    //var ReviewModel = mongoose.model('ReviewModel', ReviewSchema);
+    var ReviewModel = require("./review.schema.js")(mongoose);
+    var UserModel = mongoose.model('User', UserSchema);
+    //var ReviewModel = require
 
 
 
@@ -22,7 +22,10 @@ module.exports = function(app, mongoose, db) {
         Delete: Delete,
         FindUserByUsername: FindUserByUsername,
         FindUserByCredentials: FindUserByCredentials,
-        DeleteAll: DeleteAll
+        DeleteAll: DeleteAll,
+        //AddReview: AddReview,
+        UpdateReview: UpdateReview,
+        DeleteReview: DeleteReview
     };
     return api;
 
@@ -54,7 +57,7 @@ module.exports = function(app, mongoose, db) {
 
     function FindById(id) {
         var deferred = q.defer();
-        UserModel.findOne({id: id}, function(err, user) {
+        UserModel.findOne({_id: id}, function(err, user) {
             deferred.resolve(user);
         })
 
@@ -83,7 +86,7 @@ module.exports = function(app, mongoose, db) {
 
     function Delete(id) {
         var deferred = q.defer();
-        UserModel.findOne({_id:id}, function(err, status) {
+        UserModel.remove({_id:id}, function(err, status) {
             if(err) {
                 deferred.reject(err);
             } else {
@@ -110,7 +113,7 @@ module.exports = function(app, mongoose, db) {
             "password": credentials.password
         }, function(err, user) {
             deferred.resolve(user);
-        })
+        });
         return deferred.promise;
     }
 
@@ -121,4 +124,31 @@ module.exports = function(app, mongoose, db) {
         });
         return deferred.promise;
     }
+
+    function UpdateReview(userId, reviewId, newReview) {
+        var deferred = q.defer();
+        ReviewModel.findOne({_id: reviewId, userId: userId}, function(err, review) {
+            for(var k in newReview) {
+                review[k] = newReview[k];
+            }
+            review.save(function(err, saved) {
+                deferred.resolve(review);
+            });
+        });
+        return deferred.promise;
+    }
+
+    function DeleteReview(userId, reviewId) {
+        var deferred = q.defer();
+        ReviewModel.remove({_id: reviewId, userId: userId}, function(err, status) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                FormModel.find(function(err, reviews) {
+                    deferred.resolve(reviews);
+                });
+            }
+        })
+    }
+
 }
