@@ -12,8 +12,8 @@ module.exports = function(mongoose) {
         brand: String,
         productName: String,
         price: Number,
-        picture: String,
-        reviews: [{type: mongoose.Schema.ObjectId, ref:"Review"}]
+        picture: String
+        //reviews: [{type: mongoose.Schema.ObjectId, ref:"Review"}]
     },{
         collection: "cs5610.project.product"
     });

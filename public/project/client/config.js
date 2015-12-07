@@ -34,6 +34,11 @@
                     templateUrl: './views/product/product.view.html',
                     controller: 'ProductController'
                 })
+                .when('/product/:id',
+                {
+                    templateUrl: './views/product/product.view.html',
+                    controller: 'ProductController'
+                })
                 .when('/search',
                 {
                     templateUrl:'./views/search/search.view.html',

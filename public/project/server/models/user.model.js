@@ -25,7 +25,8 @@ module.exports = function(app, mongoose, db) {
         DeleteAll: DeleteAll,
         //AddReview: AddReview,
         UpdateReview: UpdateReview,
-        DeleteReview: DeleteReview
+        DeleteReview: DeleteReview,
+        FindAllReviewBy: FindAllReview
     };
     return api;
 
@@ -162,6 +163,16 @@ module.exports = function(app, mongoose, db) {
             if(err)
                 console.log(err);
             deferred.resolve(status);
+        });
+        return deferred.promise;
+    }
+
+    function FindAllReview(id) {
+        var deferred = q.defer();
+        ReviewModel.find({userId: id}, function(err, reviews) {
+            if(err)
+                console.log(err);
+            deferred.resolve(reviews);
         });
         return deferred.promise;
     }

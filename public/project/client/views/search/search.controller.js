@@ -13,6 +13,7 @@
         $scope.$location = $location;
         $scope.searchProduct = searchProduct;
         $scope.searchInSearch = searchInSearch;
+        $scope.selectProduct = selectProduct;
 
         if($rootScope.searchContent) {
             console.log($rootScope.searchContent);
@@ -31,6 +32,15 @@
                 $scope.products = data;
             })
 
+        }
+
+        function selectProduct(productIndex) {
+            $scope.product = {};
+            for(var key in $scope.products[productIndex]) {
+                $scope.product[key] = $scope.products[productIndex][key]
+            }
+            console.log($scope.product._id);
+            $location.path('/product/'+ $scope.product._id);
         }
 
     }

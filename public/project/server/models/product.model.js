@@ -122,17 +122,24 @@ module.exports = function(app, mongoose, db) {
         return deferred.promise;
     }
 
-    function AddReview(productId, userId, newReview) {
+    function AddReview(newReview) {
+        console.log(newReview);
         var deferred = q.defer();
         var newReviewWithId = new ReviewModel(newReview);
-        newReviewWithId.userId = userId;
-        ProductModel.findOne({_id:productId}, function(err, product) {
+        //newReviewWithId.userId = userId;
+        //console.log(productId);
+        //ProductModel.findOne({_id:productId}, function(err, product) {
+        //    if(err)
+        //        console.log(err);
+        //    product.reviews.push(newReviewWithId._id);
+        //    product.save(function(err, saved) {
+        //        deferred.resolve(product.reviews);
+        //    });
+        //});
+        ReviewModel.create(newReviewWithId,function(err, review) {
             if(err)
                 console.log(err);
-            product.reviews.push(newReviewWithId._id);
-            product.save(function(err, saved) {
-                deferred.resolve(product.reviews);
-            });
+            deferred.resolve(review);
         });
         return deferred.promise;
     }
@@ -186,14 +193,20 @@ module.exports = function(app, mongoose, db) {
 
     function FindAllReviewsByProductId(productId) {
         var deferred = q.defer();
-        ProductModel.findOne({_id: productId}, function(err, product) {
+        //ProductModel.findOne({_id: productId}, function(err, product) {
+        //    if(err)
+        //        console.log(err);
+        //    product.find({}, function(err, reviews) {
+        //        if(err)
+        //            console.log(err);
+        //        deferred.resolve(reviews);
+        //    });
+        //});
+        ReviewModel.find({productId: productId}, function(err, reviews) {
             if(err)
                 console.log(err);
-            product.find({}, function(err, reviews) {
-                if(err)
-                    console.log(err);
-                deferred.resolve(reviews);
-            });
+            console.log("find all reviews from" + productId);
+            deferred.resolve(reviews);
         });
         return deferred.promise;
     }

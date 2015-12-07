@@ -17,14 +17,15 @@ module.exports = function(app, model) {
         })
     });
 
-    app.get('/api/project/product/:productId', function(req, res) {
+    app.get('/api/project/product/:productId/review', function(req, res) {
         model.FindAllReviewsByProductId(req.params.productId).then(function(review) {
             res.json(review);
         })
     });
 
-    app.post('/api/project/user/:userId/product/:productId/', function(req, res) {
-        var newReview = req.body;
+    app.post('/api/project/user/:userId/product/:productId', function(req, res) {
+        var newReview = {};
+        newReview.content = req.body.review;
         newReview.userId = req.params.userId;
         newReview.productId = req.params.productId;
         model.AddReview(newReview).then(function(review) {
@@ -47,6 +48,13 @@ module.exports = function(app, model) {
     app.delete('/api/project/user/:userId/product/:productId/review/:reviewId',function(req,res){
         model.DeleteReview(req.params.productId, req.params.userId, reviewId).then(function(review) {
             res.json(review);
+        })
+    })
+
+    app.get('/api/project/product/:productId', function(req, res) {
+        console.log(req.params.productId);
+        model.FindById(req.params.productId).then(function(product) {
+            res.json(product);
         })
     })
 

@@ -1,10 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<section ng-controller="ProductController">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-offset-md-1 col-sm-12">
 
-</body>
-</html>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <img class="product-img" ng-src="product.picture"/>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 product-detail table-striped">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="col-lg-1 col-md-1 col-sm-2"></th>
+                            <th class="col-lg-2 col-md-1 col-sm-4">{{product.productName}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Brand</td>
+                            <td>{{product.brand}}</td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td>${{product.price}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <hr>
+            <div class="col-md-6 col-md-offset-2 col-lg-8 col-lg-offset-2">
+                <h3>Add Review</h3>
+                <div class="form-group col-lg-10">
+                    <br>
+                    <input id = "mlt" ng-model ="newReview" class="form-control" type="text" placeholder="Add review...">
+                    <a class="btn btn-default" ng-click="addReview()">Add</a>
+
+                </div>
+
+
+            </div>
+        <div class="col-md-6 col-md-offset-2 col-lg-8 col-lg-offset-2">
+            <h3>User Reviews</h3>
+            <table>
+                <thead></thead>
+                <tbody>
+                <tr ng-repeat="review in reviews">
+                    <td>{{review.content}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+</section>

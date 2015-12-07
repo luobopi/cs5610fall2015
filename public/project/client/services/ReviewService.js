@@ -12,15 +12,15 @@
         var service = {
             createReviewForProduct: createReviewForProduct,
             getReview: getReview,
-            getReviewsFromProduct: getReviewsFromProduct,
-            deleteReviewFromProduct: deleteReviewFromProduct,
-            updateReviewForProduct: updateReviewForProduct
+            getReviewsFromProduct: getReviewsFromProduct
+            //deleteReviewFromProduct: deleteReviewFromProduct,
+            //updateReviewForProduct: updateReviewForProduct
         };
         return service;
 
         function createReviewForProduct(productId, userId, review) {
             var deferred = $q.defer();
-            $http.post('/api/project/user/:userId/product/:productId/', review)
+            $http.post('/api/project/user/'+ userId +'/product/'+ productId, {review:review})
                 .success(function(response) {
                     deferred.resolve(response);
                 });
@@ -38,7 +38,7 @@
 
         function getReviewsFromProduct(productId) {
             var deferred = $q.defer();
-            $http.get('/api/project/product/' + productId)
+            $http.get('/api/project/product/' + productId + '/review')
                 .success(function(response) {
                     deferred.resolve(response);
                 });

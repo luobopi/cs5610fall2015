@@ -11,7 +11,8 @@
     function ProductService($http, $q) {
         var service = {
             findProduct: findProduct,
-            addProduct: addProduct
+            addProduct: addProduct,
+            selectProduct: selectProduct,
         };
         return service;
 
@@ -37,6 +38,14 @@
                     console.log(response);
                     callback();
                 })
+        }
+
+        function selectProduct(productId, callback) {
+            $http.get('/api/project/product/'+ productId)
+                .then(function(response){
+                console.log(response);
+                callback(response.data[0]);
+            })
         }
 
     }
