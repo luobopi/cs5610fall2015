@@ -11,13 +11,42 @@
     function ReviewService($http, $q) {
         var service = {
             createReviewForProduct: createReviewForProduct,
-            getReviewFromProduct: getReviewFromProduct,
+            getReview: getReview,
             getReviewsFromProduct: getReviewsFromProduct,
             deleteReviewFromProduct: deleteReviewFromProduct,
             updateReviewForProduct: updateReviewForProduct
         };
         return service;
 
-        //function createReviewForProduct(productId, review)
+        function createReviewForProduct(productId, userId, review) {
+            var deferred = $q.defer();
+            $http.post('/api/project/user/:userId/product/:productId/', review)
+                .success(function(response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function getReview(reviewId) {
+            var deferred = $q.defer();
+            $http.get('/api/project/review/' + reviewId)
+                .success(function(response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function getReviewsFromProduct(productId) {
+            var deferred = $q.defer();
+            $http.get('/api/project/product/' + productId)
+                .success(function(response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function deleteReviewFromProduct(userId, productId, reviewId) {
+
+        }
     }
 })();

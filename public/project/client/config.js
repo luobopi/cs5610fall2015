@@ -34,16 +34,15 @@
                     templateUrl: './views/product/product.view.html',
                     controller: 'ProductController'
                 })
-                //.when("/user/:userId/form/:formId/fields",
-                //{
-                //    templateUrl: './views/field/field.view.html',
-                //    controller: 'FieldController',
-                //    controllerAs: 'model'
-                //})
                 .when('/search',
                 {
                     templateUrl:'./views/search/search.view.html',
                     controller: 'SearchController'
+                })
+                .when('/admin',
+                {
+                    templateUrl: './views/admin/admin.view.html',
+                    controller: 'AdminController'
                 })
                 .otherwise({
                     redirectTo: '/home'

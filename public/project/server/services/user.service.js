@@ -57,4 +57,10 @@ module.exports = function(app, model) {
             res.json(review);
         })
     })
+
+    app.delete('/api/project/user/:userId/:reviewId', function(req, res) {
+        model.DeleteReview(req.params.userId, req.params.reviewId).then(function(status){
+            res.json(status);
+        })
+    })
 };

@@ -19,11 +19,13 @@
             var user = {
                 username: $scope.username,
                 password: $scope.password,
-                email: $scope.email
+                email: $scope.email,
+                admin: $scope.admin
             };
             UserService.createUser(user).then(function(user) {
                 if (user) {
                     console.log("register");
+                    console.log(user.admin);
                     $rootScope.user = user;
                     $location.url('/profile');
                 }

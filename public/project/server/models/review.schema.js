@@ -3,6 +3,8 @@
  */
 "use strict";
 
+var model = null;
+
 module.exports = function(mongoose) {
 
     var reviewSchema = mongoose.Schema({
@@ -15,5 +17,8 @@ module.exports = function(mongoose) {
         collection: "cs5610.project.reviews"
     });
 
-    return mongoose.model('Review', reviewSchema);
+    if(model == null) {
+        model = mongoose.model('Review', reviewSchema);
+    }
+    return model;
 }

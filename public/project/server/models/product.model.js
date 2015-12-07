@@ -6,10 +6,8 @@
 var q = require("q");
 
 module.exports = function(app, mongoose, db) {
-    var ProductSchema = require('./product.schema.js');
-    var ProductModel = mongoose.model('ProductModel', ProductSchema);
-    var ReviewSchema = require('./review.schema.js');
-    var ReviewModel = mongoose.model('ReviewModel', ReviewSchema);
+    var ProductModel = require('./product.schema.js')(mongoose);
+    var ReviewModel = require('./review.schema.js')(mongoose);
 
     var api = {
         Create: Create,
@@ -20,9 +18,10 @@ module.exports = function(app, mongoose, db) {
         Update: Update,
         Delete: Delete,
         AddReview: AddReview,
-        DeleteReview: DeleteReview,
+        //DeleteReview: DeleteReview,
         UpdateReview: UpdateReview,
-        FindReviewById: FindReviewById
+        FindReviewById: FindReviewById,
+        FindAllReviewsByProductId: FindAllReviewsByProductId
 
     };
     return api;
@@ -32,7 +31,7 @@ module.exports = function(app, mongoose, db) {
         console.log("create a new product in models");
         ProductModel.create(newProduct, function(err, saveProduct) {
             if (err)
-                concole.log(err);
+                console.log(err);
             console.log("Create new product!");
             deferred.resolve(saveProduct);
         });
@@ -66,6 +65,7 @@ module.exports = function(app, mongoose, db) {
     }
 
     function FindByBrand(brand) {
+        console.log(brand);
         var deferred = q.defer();
         ProductModel.find({brand: brand}, function(err, products) {
             if (err)
@@ -78,7 +78,7 @@ module.exports = function(app, mongoose, db) {
 
     function FindByName(name) {
         var deferred = q.defer();
-        ProductModel.find({name: name}, function(err, product) {
+        ProductModel.find({productName: name}, function(err, product) {
             if(err)
                 console.log(err);
             console.log("Find the product by name");
@@ -137,21 +137,22 @@ module.exports = function(app, mongoose, db) {
         return deferred.promise;
     }
 
-    function DeleteReview(productId, userId, reviewId) {
-        var deferred = q.defer();
-        ProductModel.findOne({_id: productId}, function(err, foundProduct) {
-            var reviewIndex = foundProduct.reviews.findIndex(function(item, index, array) {
-                return item === reviewId;
-            });
-            if(foundProduct.reviews[reviewIndex].userId === userId) {
-                foundProduct.reviews.slice(reviewIndex,1);
-                foundProduct.save(function(err, status) {
-                    deferred.resolve(foundProduct.reviews);
-                });
-            }
-        });
-        return deferred.promise;
-    }
+    //function DeleteReview(productId, userId, reviewId) {
+    //    var deferred = q.defer();
+    //    ReviewModel.remove({_id: reviewId},)
+    //    ProductModel.findOne({_id: productId}, function(err, foundProduct) {
+    //        var reviewIndex = foundProduct.reviews.findIndex(function(item, index, array) {
+    //            return item === reviewId;
+    //        });
+    //        if(foundProduct.reviews[reviewIndex].userId === userId) {
+    //            foundProduct.reviews.slice(reviewIndex,1);
+    //            foundProduct.save(function(err, status) {
+    //                deferred.resolve(foundProduct.reviews);
+    //            });
+    //        }
+    //    });
+    //    return deferred.promise;
+    //}
 
     function UpdateReview(productId, userId, reviewId, newReview) {
         var deferred = q.defer();
@@ -179,6 +180,20 @@ module.exports = function(app, mongoose, db) {
             if(err)
                 console.log(err)
             deferred.resolve(review);
+        });
+        return deferred.promise;
+    }
+
+    function FindAllReviewsByProductId(productId) {
+        var deferred = q.defer();
+        ProductModel.findOne({_id: productId}, function(err, product) {
+            if(err)
+                console.log(err);
+            product.find({}, function(err, reviews) {
+                if(err)
+                    console.log(err);
+                deferred.resolve(reviews);
+            });
         });
         return deferred.promise;
     }

@@ -10,14 +10,32 @@
 
     function ProductService($http, $q) {
         var service = {
-            findProduct: findProduct
+            findProduct: findProduct,
+            addProduct: addProduct
         };
         return service;
 
-        function findProduct(key) {
+        function findProduct(key, callback) {
+            console.log(key);
             $http.post('/api/project/search', {key:key})
                 .then(function(response) {
                     console.log(response);
+                    callback(response.data);
+                })
+            //$http({
+            //    method: "POST",
+            //    url: '/api/project/search',
+            //    data: {key: key}
+            //}).success(function(response) {
+            //    callback(response)
+            //})
+        }
+
+        function addProduct(newProduct, callback) {
+            $http.post('/api/project/product', newProduct)
+                .then(function(response) {
+                    console.log(response);
+                    callback();
                 })
         }
 

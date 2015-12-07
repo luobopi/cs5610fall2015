@@ -7,7 +7,7 @@ module.exports = function(mongoose) {
     //var ReviewSchema = require("./review.schema.js");
     //mongoose.model('Review', ReviewSchema);
     //var UserSchema = require("./user.schema.js");
-    return mongoose.Schema({
+    var UserSchema = mongoose.Schema({
         username: String,
         password: String,
         firstName: String,
@@ -15,8 +15,11 @@ module.exports = function(mongoose) {
         email: String,
         birthday: Date,
         photo: String,
+        admin: {type: Boolean, default: false},
         reviews: [{type: mongoose.Schema.ObjectId, ref: "Review"}]
     }, {
         collection: "cs5610.project.user"
     });
+
+    return mongoose.model('User', UserSchema);
 };

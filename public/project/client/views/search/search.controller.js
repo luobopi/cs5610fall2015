@@ -12,6 +12,7 @@
     function SearchController($rootScope, $scope, $location, ProductService) {
         $scope.$location = $location;
         $scope.searchProduct = searchProduct;
+        $scope.searchInSearch = searchInSearch;
 
         if($rootScope.searchContent) {
             console.log($rootScope.searchContent);
@@ -21,6 +22,15 @@
         function searchProduct() {
             $rootScope.searchContent = $scope.searchContent;
             $location.path('/search');
+        }
+
+        function searchInSearch() {
+            console.log($scope.content);
+            ProductService.findProduct($scope.content, function(data){
+                console.log(data);
+                $scope.products = data;
+            })
+
         }
 
     }

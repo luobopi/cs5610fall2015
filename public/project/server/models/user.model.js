@@ -7,9 +7,9 @@ var q = require("q");
 
 module.exports = function(app, mongoose, db) {
     //var uuid = require("node-uuid");
-    var UserSchema = require("./user.schema.js")(mongoose);
     var ReviewModel = require("./review.schema.js")(mongoose);
-    var UserModel = mongoose.model('User', UserSchema);
+    var UserModel = require("./user.schema.js")(mongoose);
+    var ProductModel = require('./product.schema.js')(mongoose);
     //var ReviewModel = require
 
 
@@ -138,17 +138,32 @@ module.exports = function(app, mongoose, db) {
         return deferred.promise;
     }
 
-    function DeleteReview(userId, reviewId) {
+    function DeleteReview(reviewId) {
         var deferred = q.defer();
-        ReviewModel.remove({_id: reviewId, userId: userId}, function(err, status) {
-            if(err) {
-                deferred.reject(err);
-            } else {
-                FormModel.find(function(err, reviews) {
-                    deferred.resolve(reviews);
+        ReviewModel.findOne({_id: reviewId}, function(err, review) {
+            var reviewUserId = review.userId;
+            var reviewProductId = review.productId;
+            ProductModel.findOne({_id: reviewProductId}, function(err, foundProduct) {
+                var reviewIndex = foundProduct.reviews.findIndex(function(item, index, array) {
+                    return item === reviewId;
                 });
-            }
-        })
+                foundProduct.reviews.slice(reviewIndex,1);
+                foundProduct.save();
+            });
+            UserModel.findOne({_id: reviewUserId}, function(err, foundUser) {
+                var reviewIndex = foundUser.reviews.findIndex(function(item, index, array) {
+                    return item === reviewId;
+                });
+                foundUser.reviews.slice(reviewIndex, 1);
+                foundUser.save();
+            });
+        });
+        ReviewModel.remove({_id: reviewId}, function(err, status) {
+            if(err)
+                console.log(err);
+            deferred.resolve(status);
+        });
+        return deferred.promise;
     }
 
 }
