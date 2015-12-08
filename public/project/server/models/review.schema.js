@@ -10,8 +10,8 @@ module.exports = function(mongoose) {
     var reviewSchema = mongoose.Schema({
         brand: String,
         name: String,
-        userId: mongoose.Schema.ObjectId,
-        productId: mongoose.Schema.ObjectId,
+        userId: {type: mongoose.Schema.ObjectId, ref: "User"},
+        productId: {type:mongoose.Schema.ObjectId, ref: "Product"},
         content: String
     },{
         collection: "cs5610.project.reviews"

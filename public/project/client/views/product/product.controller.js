@@ -29,6 +29,7 @@
                 ReviewService.createReviewForProduct(productId, $rootScope.user._id, $scope.newReview)
                     .then(function() {
                         loadAllReviews();
+                        $scope.newReview = null;
                     })
             }
         }

@@ -12,7 +12,9 @@
         var service = {
             createReviewForProduct: createReviewForProduct,
             getReview: getReview,
-            getReviewsFromProduct: getReviewsFromProduct
+            getReviewsFromProduct: getReviewsFromProduct,
+            updateReviewFromUser: updateReviewFromUser,
+            deleteReviewFromUser: deleteReviewFromUser
             //deleteReviewFromProduct: deleteReviewFromProduct,
             //updateReviewForProduct: updateReviewForProduct
         };
@@ -47,6 +49,24 @@
 
         function deleteReviewFromProduct(userId, productId, reviewId) {
 
+        }
+
+        function deleteReviewFromUser(userId, reviewId) {
+            var deferred = $q.defer();
+            $http.delete('/api/project/user/'+ userId + '/reviews/' + reviewId)
+                .success(function(response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function updateReviewFromUser(userId, reviewId, newReview) {
+            var deferred = $q.defer();
+            $http.put('/api/project/user/' + userId + '/reviews/' + reviewId, newReview)
+                .success(function(response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
         }
     }
 })();

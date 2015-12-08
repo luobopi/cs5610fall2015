@@ -54,4 +54,37 @@
         <!--</div>-->
 
     </div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+            <h3>Reviews</h3>
+            <table class="table table-striped reviews">
+                <thead>
+                <tr>
+                    <th class="col-md-1">Product</th>
+                    <th class="col-md-6">Reviews</th>
+                    <th class="col-md-1">Action</th>
+                </tr>
+                <tr>
+                    <td>{{review.productId.productName}}</td>
+                    <td><input class="form-control" type="text" placeholder="name" ng-model="review.content"/></td>
+                    <td>
+                        <a ng-click="updateReview()" class="glyphicon glyphicon-ok"/>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="review in reviews">
+                    <td class="col-md-2">{{review.productId.productName}}</td>
+                    <td class="col-md-4">{{review.content}}</td>
+                    <td>
+                        <a ng-click="deleteReview($index)" class="glyphicon glyphicon-remove"/>
+                        <a ng-click="selectReview($index)" class="glyphicon glyphicon-ok"/>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 </section>

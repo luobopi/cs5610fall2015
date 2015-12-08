@@ -52,15 +52,23 @@ module.exports = function(app, model) {
         })
     });
 
-    app.put('/api/project/user/:userId/:reviewId', function(req, res) {
+    app.put('/api/project/user/:userId/reviews/:reviewId', function(req, res) {
         model.UpdateReview(req.params.userId, req.params.reviewId, req.body).then(function(review) {
             res.json(review);
         })
     })
 
-    app.delete('/api/project/user/:userId/:reviewId', function(req, res) {
+    app.delete('/api/project/user/:userId/reviews/:reviewId', function(req, res) {
         model.DeleteReview(req.params.userId, req.params.reviewId).then(function(status){
             res.json(status);
+        })
+    })
+
+    app.get('/api/project/user/:userId/reviews', function(req, res) {
+        model.FindAllReviewBy(req.params.userId).then(function(reviews) {
+            //console.log("find user reviews");
+            //console.log(reviews);
+            res.json(reviews);
         })
     })
 };

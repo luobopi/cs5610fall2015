@@ -202,7 +202,9 @@ module.exports = function(app, mongoose, db) {
         //        deferred.resolve(reviews);
         //    });
         //});
-        ReviewModel.find({productId: productId}, function(err, reviews) {
+        ReviewModel.find({productId: productId})
+            .populate('userId')
+            .exec(function(err, reviews) {
             if(err)
                 console.log(err);
             console.log("find all reviews from" + productId);

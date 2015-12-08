@@ -14,7 +14,8 @@
             findAllUsers : findAllUsers,
             createUser : createUser,
             deleteUserById : deleteUserById,
-            updateUser : updateUser
+            updateUser : updateUser,
+            findAllReviewsByUser: findAllReviewsByUser
         };
         return service;
 
@@ -61,6 +62,16 @@
             var deferred = $q.defer();
             $http.put('/api/project/user/' + id, user)
                 .success(function(response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function findAllReviewsByUser(id) {
+            var deferred = $q.defer();
+            $http.get('/api/project/user/'+ id +'/reviews')
+                .success(function(response) {
+                    console.log("UserService find all reviews by user id");
                     deferred.resolve(response);
                 });
             return deferred.promise;

@@ -5,7 +5,7 @@
 
 module.exports = function(app, model) {
     app.post('/api/project/search', function(req, res) {
-        console.log(req.body)
+        console.log(req.body);
         model.FindByBrand(req.body.key).then(function(products) {
             res.json(products);
         })
@@ -43,20 +43,20 @@ module.exports = function(app, model) {
         model.FindReviewById(req.params.reviewId).then(function(review) {
             res.json(review);
         })
-    })
+    });
 
     app.delete('/api/project/user/:userId/product/:productId/review/:reviewId',function(req,res){
         model.DeleteReview(req.params.productId, req.params.userId, reviewId).then(function(review) {
             res.json(review);
         })
-    })
+    });
 
     app.get('/api/project/product/:productId', function(req, res) {
         console.log(req.params.productId);
         model.FindById(req.params.productId).then(function(product) {
             res.json(product);
         })
-    })
+    });
 
 
 }

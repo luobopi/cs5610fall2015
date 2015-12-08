@@ -128,52 +128,49 @@ module.exports = function(app, mongoose, db) {
 
     function UpdateReview(userId, reviewId, newReview) {
         var deferred = q.defer();
-        ReviewModel.findOne({_id: reviewId, userId: userId}, function(err, review) {
+        ReviewModel.findOne({_id: reviewId, userId: userId}, function(err, foundReview) {
             for(var k in newReview) {
-                review[k] = newReview[k];
+                foundReview[k] = newReview[k];
             }
-            review.save(function(err, saved) {
-                deferred.resolve(review);
+            foundReview.save(function(err, foundReview) {
+                console.log("saved review");
+                console.log(foundReview);
+                deferred.resolve(foundReview);
             });
         });
         return deferred.promise;
     }
 
-    function DeleteReview(reviewId) {
+    function DeleteReview(userId, reviewId) {
         var deferred = q.defer();
         ReviewModel.findOne({_id: reviewId}, function(err, review) {
             var reviewUserId = review.userId;
-            var reviewProductId = review.productId;
-            ProductModel.findOne({_id: reviewProductId}, function(err, foundProduct) {
-                var reviewIndex = foundProduct.reviews.findIndex(function(item, index, array) {
-                    return item === reviewId;
+            if(reviewUserId == userId) {
+                ReviewModel.remove({_id: reviewId}, function(err, status) {
+                    if(err)
+                        console.log(err);
+                    deferred.resolve(status);
                 });
-                foundProduct.reviews.slice(reviewIndex,1);
-                foundProduct.save();
-            });
-            UserModel.findOne({_id: reviewUserId}, function(err, foundUser) {
-                var reviewIndex = foundUser.reviews.findIndex(function(item, index, array) {
-                    return item === reviewId;
-                });
-                foundUser.reviews.slice(reviewIndex, 1);
-                foundUser.save();
-            });
-        });
-        ReviewModel.remove({_id: reviewId}, function(err, status) {
-            if(err)
-                console.log(err);
-            deferred.resolve(status);
+            }
         });
         return deferred.promise;
     }
 
     function FindAllReview(id) {
         var deferred = q.defer();
-        ReviewModel.find({userId: id}, function(err, reviews) {
+        ReviewModel.find({userId: id})
+            .populate('productId')
+            .exec(function(err, reviews) {
             if(err)
                 console.log(err);
             deferred.resolve(reviews);
         });
+
+        //ReviewModel.find({userId:id}, function(err, reviews) {
+        //    if(err)
+        //        console.log(err);
+        //    deferred.resolve(reviews)
+        //});
         return deferred.promise;
     }
 

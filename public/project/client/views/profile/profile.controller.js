@@ -8,10 +8,16 @@
         .module("MakeupApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($rootScope, $scope, $location, UserService) {
+    function ProfileController($rootScope, $scope, $location, UserService, ReviewService) {
         $scope.$location = $location;
-        $scope.update = update;
         var user = $rootScope.user;
+        $scope.update = update;
+        $scope.updateReview = updateReview;
+        $scope.deleteReview = deleteReview;
+        $scope.selectReview = selectReview;
+
+
+
         if (user) {
             if (user.username) {
                 $scope.username = user.username
@@ -29,6 +35,16 @@
                 $scope.email = user.email
             }
         }
+
+        function loadAllReview() {
+            console.log("load all reviews");
+            console.log(user._id);
+            UserService.findAllReviewsByUser(user._id)
+                .then(function(reviews) {
+                    $scope.reviews = reviews;
+                })
+        }
+        loadAllReview();
 
         function update() {
 
@@ -49,6 +65,37 @@
                 //$rootScope.user = user;
             });
             //$location.url('/profile');
+        }
+
+
+
+        function updateReview() {
+            //console.log($scope.review);
+            var newReview = {};
+            for (var key in $scope.review) {
+                newReview[key] = $scope.review[key];
+            }
+            ReviewService.updateReviewFromUser(user._id, $scope.review._id, newReview)
+                .then(function(review) {
+                    $scope.review = review;
+                    loadAllReview();
+                });
+        }
+
+        function deleteReview(reviewIndex) {
+            ReviewService.deleteReviewFromUser(user._id, $scope.reviews[reviewIndex]._id)
+                .then(function() {
+                    console.log("The review index are", reviewIndex);
+                    loadAllReview();
+                })
+        }
+
+        function selectReview(reviewIndex) {
+            $scope.review = {};
+            for(var key in $scope.reviews[reviewIndex]) {
+                $scope.review[key] = $scope.reviews[reviewIndex][key];
+            }
+            console.log($scope.review._id)
         }
 
     }

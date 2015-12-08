@@ -17,7 +17,10 @@
 
         if($rootScope.searchContent) {
             console.log($rootScope.searchContent);
-            ProductService.findProduct($rootScope.searchContent);
+            ProductService.findProduct($rootScope.searchContent, function(data){
+                console.log(data);
+                $scope.products = data;
+            });
 
         }
         function searchProduct() {

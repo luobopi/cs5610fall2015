@@ -4,14 +4,14 @@
 
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6">
-                    <img class="product-img" ng-src="product.picture"/>
+                    <img class="product-img" ng-src="{{product.picture}}"/>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 product-detail table-striped">
                     <table>
                         <thead>
                         <tr>
-                            <th class="col-lg-1 col-md-1 col-sm-2"></th>
-                            <th class="col-lg-2 col-md-1 col-sm-4">{{product.productName}}</th>
+                            <th class="col-lg-1 col-md-1 col-sm-2 text-center"></th>
+                            <th class="col-lg-2 col-md-2 col-sm-4 text-center">{{product.productName}}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -35,7 +35,7 @@
         <hr>
             <div class="col-md-6 col-md-offset-2 col-lg-8 col-lg-offset-2">
                 <h3>Add Review</h3>
-                <div class="form-group col-lg-10">
+                <div class="form-group col-lg-12">
                     <br>
                     <input id = "mlt" ng-model ="newReview" class="form-control" type="text" placeholder="Add review...">
                     <a class="btn btn-default" ng-click="addReview()">Add</a>
@@ -46,11 +46,17 @@
             </div>
         <div class="col-md-6 col-md-offset-2 col-lg-8 col-lg-offset-2">
             <h3>User Reviews</h3>
-            <table>
-                <thead></thead>
+            <table class="table table-striped reviews">
+                <thead>
+                <tr>
+                    <td class="col-md-1">user name</td>
+                    <td class="col-md-5">reviews</td>
+                </tr>
+                </thead>
                 <tbody>
                 <tr ng-repeat="review in reviews">
-                    <td>{{review.content}}</td>
+                    <td class="col-md-1">{{review.userId.username}}</td>
+                    <td class="col-md-5">{{review.content}}</td>
                 </tr>
                 </tbody>
             </table>
