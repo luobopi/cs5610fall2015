@@ -6,21 +6,21 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <img class="product-img" ng-src="{{product.picture}}"/>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 product-detail table-striped">
-                    <table>
+                <div class="col-lg-8 col-md-8 col-sm-6 product-detail">
+                    <table class="table">
                         <thead>
                         <tr>
-                            <th class="col-lg-1 col-md-1 col-sm-2 text-center"></th>
+                            <!--<th class="col-lg-1 col-md-1 col-sm-2 text-center"></th>-->
                             <th class="col-lg-2 col-md-2 col-sm-4 text-center">{{product.productName}}</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Brand</td>
+                            <td class="col-lg-3 col-md-3 col-sm-4">Brand</td>
                             <td>{{product.brand}}</td>
                         </tr>
                         <tr>
-                            <td>Price</td>
+                            <td class="col-lg-3 col-md-3 col-sm-2">Price</td>
                             <td>${{product.price}}</td>
                         </tr>
                         </tbody>

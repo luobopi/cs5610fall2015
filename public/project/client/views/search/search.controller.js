@@ -14,18 +14,50 @@
         $scope.searchProduct = searchProduct;
         $scope.searchInSearch = searchInSearch;
         $scope.selectProduct = selectProduct;
+        $scope.searchClinique = searchClinique;
+        $scope.searchLancome = searchLancome;
+        $scope.searchYSL = searchYSL;
+        $scope.searchChanel = searchChanel;
+        $scope.searchFresh = searchFresh;
+        $scope.searchKiehls = searchKiehls;
 
         if($rootScope.searchContent) {
             console.log($rootScope.searchContent);
             ProductService.findProduct($rootScope.searchContent, function(data){
                 console.log(data);
                 $scope.products = data;
+                $rootScope.searchContent = null;
             });
 
         }
+
         function searchProduct() {
             $rootScope.searchContent = $scope.searchContent;
             $location.path('/search');
+        }
+
+        function searchClinique() {
+            $rootScope.searchContent = "Clinique";
+        }
+
+        function searchLancome() {
+            $rootScope.searchContent = "Lancom";
+        }
+
+        function searchYSL() {
+            $rootScope.searchContent = "YSL";
+        }
+
+        function searchChanel() {
+            $rootScope.searchContent = "Chanel";
+        }
+
+        function searchFresh() {
+            $rootScope.searchContent = "Fresh";
+        }
+
+        function searchKiehls() {
+            $rootScope.searchContent = "Kiehl's";
         }
 
         function searchInSearch() {
