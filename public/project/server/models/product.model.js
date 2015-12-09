@@ -67,7 +67,7 @@ module.exports = function(app, mongoose, db) {
     function FindByBrand(brand) {
         console.log(brand);
         var deferred = q.defer();
-        ProductModel.find({brand: brand}, function(err, products) {
+        ProductModel.find({$or:[{brand: {'$regex': brand}}, {productName: {'$regex': brand}}]}, function(err, products) {
             if (err)
                 console.log(err);
             console.log("Find the product by brand");

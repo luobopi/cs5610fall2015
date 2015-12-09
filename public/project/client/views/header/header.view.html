@@ -21,16 +21,16 @@
                     <li>
                         <a class="page-scroll" href="#/register"  ng-class="{'active' : $location.url() == '/register'}">Register</a>
                     </li>
-                    <li>
+                    <li ng-if="!user">
                         <a class="page-scroll" href="#/login"  ng-class="{'active': $location.url() == '/login'}">Login</a>
                     </li>
-                    <li>
+                    <li ng-if="user">
                         <a class="page-scroll" href="#/profile"  ng-class="{'active': $location.url() == '/profile'}">Profile</a>
                     </li>
-                    <li>
+                    <li ng-if="user" ng-click="logout()">
                         <a class="page-scroll" href="#/home">Logout</a>
                     </li>
-                    <li>
+                    <li ng-if="user && user.admin">
                         <a class="page-scroll" href="#/admin">Admin</a>
                     </li>
                 </ul>
