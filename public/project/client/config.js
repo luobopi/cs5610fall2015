@@ -49,6 +49,21 @@
                     templateUrl: './views/admin/admin.view.html',
                     controller: 'AdminController'
                 })
+                .when('/admin/user',
+                {
+                    templateUrl: './views/admin/user/admin.user.view.html',
+                    controller: 'AdminUserController'
+                })
+                .when('/admin/product',
+                {
+                    templateUrl: './views/admin/product/admin.product.view.html',
+                    controller: 'AdminProductController'
+                })
+                .when('/admin/reviews',
+                {
+                    templateUrl: './views/admin/reviews/admin.reviews.view.html',
+                    controller: 'AdminReviewController'
+                })
                 .otherwise({
                     redirectTo: '/home'
                 })

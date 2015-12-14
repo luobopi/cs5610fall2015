@@ -21,7 +21,9 @@ module.exports = function(app, mongoose, db) {
         //DeleteReview: DeleteReview,
         UpdateReview: UpdateReview,
         FindReviewById: FindReviewById,
-        FindAllReviewsByProductId: FindAllReviewsByProductId
+        FindAllReviewsByProductId: FindAllReviewsByProductId,
+        FindAllReviews: FindAllReviews,
+        DeleteReviewByReviewId: DeleteReviewByReviewId
 
     };
     return api;
@@ -40,13 +42,23 @@ module.exports = function(app, mongoose, db) {
 
     function FindAll() {
         var deferred = q.defer();
-        ProductModel.find(function(err, products) {
+        ProductModel.find({}, function(err, products) {
             if(err){
                 console.log(err);
             } else{
                 console.log("Find all products");
                 deferred.resolve(products);
             }
+        });
+        return deferred.promise;
+    }
+
+    function DeleteReviewByReviewId(reviewId) {
+        var deferred = q.defer();
+        ReviewModel.remove({_id: reviewId}, function(err, status) {
+            if(err)
+                console.log(err);
+            deferred.resolve(status);
         });
         return deferred.promise;
     }
@@ -210,6 +222,20 @@ module.exports = function(app, mongoose, db) {
             console.log("find all reviews from" + productId);
             deferred.resolve(reviews);
         });
+        return deferred.promise;
+    }
+
+    function FindAllReviews() {
+        var deferred = q.defer();
+        ReviewModel.find({})
+            .populate('userId')
+            .populate('productId')
+            .exec(function(err, reviews) {
+                if(err)
+                    console.log(err);
+                console.log("find all reviews from");
+                deferred.resolve(reviews);
+            });
         return deferred.promise;
     }
 

@@ -32,7 +32,7 @@
         function findAllUsers() {
             var deferred = $q.defer();
 
-            $http.get('/api/project/user')
+            $http.get('/api/project/admin/user')
                 .success(function(response) {
                     deferred.resolve(response);
                 });

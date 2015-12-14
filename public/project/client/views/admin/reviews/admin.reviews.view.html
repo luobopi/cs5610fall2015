@@ -1,0 +1,52 @@
+<section ng-controller="AdminReviewController">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-user wow bounceIn text-primary" data-wow-delay=".3s"></i>
+                    <h3><a href="#admin/user">User</a></h3>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-shopping-bag wow bounceIn text-primary" data-wow-delay=".1s"></i>
+                    <h3><a href="#admin/product">Product</a></h3>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-comments wow bounceIn text-primary"></i>
+                    <h3><a href="#admin/reviews">Reviews</a></h3>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="row">
+            <div class="text-primary">
+                <h1>Reviews</h1>
+                <hr>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="col-lg-1 col-md-1">Product</th>
+                        <th class="col-lg-3 col-md-3">Review</th>
+                        <th class="col-lg-1 col-md-1">Username</th>
+                        <th class="col-lg-1 col-md-1">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="review in adminReviews">
+                        <td class="col-md-1">{{review.productId.productName}}</td>
+                        <td class="col-md-3">{{review.content}}</td>
+                        <td class="col-md-1">{{review.userId.username}}</td>
+                        <td><a ng-click="adminDeleteReview($index)" class="glyphicon glyphicon-remove"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

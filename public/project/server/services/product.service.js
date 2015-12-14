@@ -58,5 +58,29 @@ module.exports = function(app, model) {
         })
     });
 
+    app.get('/api/project/admin/reviews', function(req, res) {
+        console.log("find all reviews");
+        model.FindAllReviews().then(function(reviews) {
+            res.json(reviews);
+        })
+    });
+
+    app.delete('/api/project/admin/review/:reviewId', function(req, res) {
+        model.DeleteReviewByReviewId(reviewId).then(function(review) {
+            res.json(review);
+        })
+    });
+
+    app.delete('/api/project/admin/product/:productId', function(req, res) {
+        model.Delete(productId).then(function(product) {
+            res.json(product);
+        })
+    });
+
+    app.get('/api/project/admin/product', function(req, res) {
+        model.FindAll().then(function(products) {
+            res.json(products);
+        })
+    })
 
 }

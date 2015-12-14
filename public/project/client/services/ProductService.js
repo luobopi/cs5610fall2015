@@ -13,8 +13,19 @@
             findProduct: findProduct,
             addProduct: addProduct,
             selectProduct: selectProduct,
+            deleteProduct: deleteProduct,
+            getAllProducts: getAllProducts
         };
         return service;
+
+        function getAllProducts(callback) {
+            console.log("get all products from Product Service");
+            $http.get('/api/project/admin/product')
+                .then(function(response) {
+                    console.log(response);
+                    callback(response.data);
+                })
+        }
 
         function findProduct(key, callback) {
             console.log(key);
@@ -22,7 +33,7 @@
                 .then(function(response) {
                     console.log(response);
                     callback(response.data);
-                })
+                });
             //$http({
             //    method: "POST",
             //    url: '/api/project/search',
@@ -46,6 +57,14 @@
                 console.log(response);
                 callback(response.data[0]);
             })
+        }
+
+        function deleteProduct(productId, callback) {
+            $http.delete('/api/project/admin/product/' + productId)
+                .then(function(response) {
+                    console.log(response);
+                    callback();
+                })
         }
 
     }

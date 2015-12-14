@@ -14,7 +14,9 @@
             getReview: getReview,
             getReviewsFromProduct: getReviewsFromProduct,
             updateReviewFromUser: updateReviewFromUser,
-            deleteReviewFromUser: deleteReviewFromUser
+            deleteReviewFromUser: deleteReviewFromUser,
+            getAllReviews: getAllReviews,
+            deleteReviewById: deleteReviewById
             //deleteReviewFromProduct: deleteReviewFromProduct,
             //updateReviewForProduct: updateReviewForProduct
         };
@@ -23,6 +25,24 @@
         function createReviewForProduct(productId, userId, review) {
             var deferred = $q.defer();
             $http.post('/api/project/user/'+ userId +'/product/'+ productId, {review:review})
+                .success(function(response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function getAllReviews() {
+            var deferred = $q.defer();
+            $http.get('/api/project/admin/reviews')
+                .success(function(response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function deleteReviewById(reviewId) {
+            var deferred = $q.defer();
+            $http.delete('/api/project/admin/review/' + reviewId)
                 .success(function(response) {
                     deferred.resolve(response);
                 });

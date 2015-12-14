@@ -41,7 +41,7 @@
         }
 
         function searchLancome() {
-            $rootScope.searchContent = "Lancom";
+            $rootScope.searchContent = "Lancome";
         }
 
         function searchYSL() {

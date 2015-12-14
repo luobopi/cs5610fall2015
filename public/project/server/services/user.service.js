@@ -62,13 +62,19 @@ module.exports = function(app, model) {
         model.DeleteReview(req.params.userId, req.params.reviewId).then(function(status){
             res.json(status);
         })
-    })
+    });
 
     app.get('/api/project/user/:userId/reviews', function(req, res) {
         model.FindAllReviewBy(req.params.userId).then(function(reviews) {
             //console.log("find user reviews");
             //console.log(reviews);
             res.json(reviews);
+        })
+    });
+
+    app.get('/api/project/admin/user', function(req, res) {
+        model.FindAll().then(function(users) {
+            res.json(users);
         })
     })
 };
