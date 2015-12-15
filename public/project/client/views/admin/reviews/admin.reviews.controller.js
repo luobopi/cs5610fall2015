@@ -25,7 +25,7 @@
         function adminDeleteReview(reviewIndex) {
             ReviewService.deleteReviewById($scope.adminReviews[reviewIndex]._id)
                 .then(function() {
-                    console.log("The review index is", userIndex);
+                    console.log("The review index is", reviewIndex);
                     console.log("Delete the review");
                     loadAllReviews();
                 })

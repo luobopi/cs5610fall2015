@@ -66,13 +66,13 @@ module.exports = function(app, model) {
     });
 
     app.delete('/api/project/admin/review/:reviewId', function(req, res) {
-        model.DeleteReviewByReviewId(reviewId).then(function(review) {
+        model.DeleteReviewByReviewId(req.params.reviewId).then(function(review) {
             res.json(review);
         })
     });
 
     app.delete('/api/project/admin/product/:productId', function(req, res) {
-        model.Delete(productId).then(function(product) {
+        model.Delete(req.params.productId).then(function(product) {
             res.json(product);
         })
     });

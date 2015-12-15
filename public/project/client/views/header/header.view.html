@@ -24,19 +24,19 @@
                         <a class="page-scroll" href="#search">Search</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#/register"  ng-class="{'active' : $location.url() == '/register'}">Register</a>
+                        <a class="page-scroll" href="#register"  ng-class="{'active' : $location.url() == '/register'}">Register</a>
                     </li>
                     <li ng-if="!user">
-                        <a class="page-scroll" href="#/login"  ng-class="{'active': $location.url() == '/login'}">Login</a>
+                        <a class="page-scroll" href="#login"  ng-class="{'active': $location.url() == '/login'}">Login</a>
                     </li>
                     <li ng-if="user">
-                        <a class="page-scroll" href="#/profile"  ng-class="{'active': $location.url() == '/profile'}">Profile</a>
+                        <a class="page-scroll" href="#profile"  ng-class="{'active': $location.url() == '/profile'}">Profile</a>
                     </li>
                     <li ng-if="user" ng-click="logout()">
-                        <a class="page-scroll" href="#/home">Logout</a>
+                        <a class="page-scroll" href="#home">Logout</a>
                     </li>
                     <li ng-if="user && user.admin">
-                        <a class="page-scroll" href="#/admin">Admin</a>
+                        <a class="page-scroll" href="#admin">Admin</a>
                     </li>
                 </ul>
             </div>

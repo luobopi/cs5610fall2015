@@ -83,16 +83,18 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th class="col-lg-2 col-md-2">Brand</th>
+                        <th class="col-lg-1 col-md-1">Brand</th>
                         <th class="col-lg-3 col-md-3">Name</th>
+                        <th class="col-lg-1 col-md-1">Price</th>
                         <th class="col-lg-1 col-md-1">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="product in adminProducts">
-                        <td class="col-md-2">{{product.brand}}</td>
+                        <td class="col-md-1">{{product.brand}}</td>
                         <td class="col-md-3">{{product.productName}}</td>
-                        <td><a ng-click="deleteProduct($index)" class="glyphicon glyphicon-remove"/></td>
+                        <td class="col-md-1">{{product.price}}</td>
+                        <td><a ng-click="adminDeleteProduct($index)" class="glyphicon glyphicon-remove"/></td>
                     </tr>
                     </tbody>
                 </table>

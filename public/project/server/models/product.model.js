@@ -122,7 +122,7 @@ module.exports = function(app, mongoose, db) {
 
     function Delete(id) {
         var deferred = q.defer();
-        ProductModel.delete({_id:id}, function(err, status) {
+        ProductModel.remove({_id:id}, function(err, status) {
             if(err) {
                 deferred.reject(err);
             } else {

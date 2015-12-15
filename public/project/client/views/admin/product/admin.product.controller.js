@@ -23,7 +23,7 @@
         loadAllProduct();
 
         function adminDeleteProduct(reviewIndex) {
-            ProductService.deleteProduct($scope.adminReviews[reviewIndex]._id, function() {
+            ProductService.deleteProduct($scope.adminProducts[reviewIndex]._id, function() {
                 loadAllProduct();
             })
         }
@@ -50,6 +50,7 @@
                 $scope.picture = null;
                 //console.log("update");
                 //$rootScope.user = user;
+                loadAllProduct();
             });
             //$location.url('/profile');
         }
