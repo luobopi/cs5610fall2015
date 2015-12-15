@@ -55,7 +55,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="review in reviews">
-                    <td class="col-md-1">{{review.userId.username}}</td>
+                    <td class="col-md-1">{{review.userId ? review.userId.username : "Unknown User"}}</td>
                     <td class="col-md-5">{{review.content}}</td>
                 </tr>
                 </tbody>

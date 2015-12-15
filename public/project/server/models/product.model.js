@@ -122,14 +122,16 @@ module.exports = function(app, mongoose, db) {
 
     function Delete(id) {
         var deferred = q.defer();
-        ProductModel.remove({_id:id}, function(err, status) {
-            if(err) {
-                deferred.reject(err);
-            } else {
-                ProductModel.find(function(err, products) {
-                    deferred.resolve(products);
-                });
-            }
+        ReviewModel.remove({productId: id}, function(err, deletedReview) {
+            ProductModel.remove({_id:id}, function(err, status) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    ProductModel.find(function(err, products) {
+                        deferred.resolve(products);
+                    });
+                }
+            });
         });
         return deferred.promise;
     }

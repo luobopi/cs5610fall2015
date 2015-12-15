@@ -41,7 +41,7 @@
                     <tr ng-repeat="review in adminReviews">
                         <td class="col-md-1">{{review.productId.productName}}</td>
                         <td class="col-md-3">{{review.content}}</td>
-                        <td class="col-md-1">{{review.userId.username}}</td>
+                        <td class="col-md-1">{{review.userId ? review.userId.username : "Unknown User"}}</td>
                         <td><a ng-click="adminDeleteReview($index)" class="glyphicon glyphicon-remove"/></td>
                     </tr>
                     </tbody>
